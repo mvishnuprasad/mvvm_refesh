@@ -10,7 +10,7 @@ class Webservices {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        URLSession.shared.dataTask(with: request) { data, response , error in
+        let task = URLSession.shared.dataTask(with: request) { data, response , error in
             if let err = error {
                 print(err)
                 completion(nil)
@@ -20,6 +20,7 @@ class Webservices {
                     completion(articlesList.articles)
                 }
             }
-        }.resume()
+        }
+        task.resume()
     }
 }
